@@ -1,6 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
+jest.setTimeout(310000); // Set timeout to 5 minutes 10 seconds
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }

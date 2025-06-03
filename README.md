@@ -68,3 +68,48 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# testy-test
+
+## Simple React App for Merge Queue CI Testing
+
+This repository contains a minimal React app with a Jest test suite and a GitHub Actions workflow for CI. It is designed to help you test GitHub Merge Queues.
+
+---
+
+## How to Enable and Use GitHub Merge Queues
+
+### 1. Enable Branch Protection Rules
+
+1. Go to your repository on GitHub.
+2. Click on **Settings** > **Branches**.
+3. Under "Branch protection rules," click **Add rule**.
+4. Set the rule for your main branch (e.g., `main`).
+5. Enable:
+   - **Require status checks to pass before merging**
+   - Select your CI workflow (e.g., `ci (ubuntu-latest, 20.x)`)
+   - **Require pull request reviews before merging** (optional, but recommended)
+   - **Require merge queue** (this is the key option)
+6. Save changes.
+
+### 2. How Merge Queue Works
+
+- When a pull request (PR) is ready to merge, click "Merge when ready."
+- The PR is added to the merge queue.
+- GitHub creates a temporary branch that combines the latest `main` with the PR, then runs your CI workflow.
+- If the tests pass, the PR is merged automatically. If not, it's removed from the queue.
+
+### 3. Testing Merge Queue
+
+- Open two or more PRs targeting `main`.
+- Mark both as "Ready to merge" (or use the "Merge queue" button).
+- Watch as GitHub serializes the merges, running your CI for each in order.
+
+### 4. Notes
+
+- Merge queue is only available for repositories where branch protection rules are set up as described.
+- For private repos, you need GitHub Enterprise Cloud. For public repos, it works on free accounts.
+
+---
+
+Happy testing!
